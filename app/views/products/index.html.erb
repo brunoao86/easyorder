@@ -2,36 +2,36 @@
 
 <h1>Products</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Price</th>
-      <th>Status</th>
-      <th>Description</th>
-      <th>Store</th>
-      <th>Category</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<% @products.each do |product| %>
+  <div class="col-md-3 col-sm-12 product">
+    <img src="http://www.mulheresempreendedoraspi.com.br/site/wp-content/uploads/2017/10/arroz-simples.jpg" class="img-responsive" />
+    <h4 class="product-title"><%= product.name %></h4>
+    <button type="button" class="btn btn-success fa fa-plus js-add-button"
+                          data-product-id="<%= product.id %>"
+                        data-product-name="<%= product.name %>">Adicionar</button>
+  </div>
+<% end %>
 
-  <tbody>
-    <% @products.each do |product| %>
-      <tr>
-        <td><%= product.name %></td>
-        <td><%= product.price %></td>
-        <td><%= product.status %></td>
-        <td><%= product.description %></td>
-        <td><%= product.store %></td>
-        <td><%= product.category %></td>
-        <td><%= link_to 'Show', product %></td>
-        <td><%= link_to 'Edit', edit_product_path(product) %></td>
-        <td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<script>
+var order = {};
 
-<br>
+$('.js-add-button').click(function(){
+  product_id = $(this).data('product-id');
+  product_name = $(this).data('product-name');
 
-<%= link_to 'New Product', new_product_path %>
+  item = order[product_id];
+
+  if (item == undefined) {
+    order[product_id] = {
+      name: product_name,
+      qtd: 1
+    }
+  } else {
+    item['qtd'] += 1;
+  }
+
+  $('#order').val(JSON.stringify(order));
+})
+
+</script>
+
