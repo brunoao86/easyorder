@@ -4,7 +4,7 @@
 
 <% @products.each do |product| %>
   <div class="col-md-3 col-sm-12 product">
-    <img src="http://www.mulheresempreendedoraspi.com.br/site/wp-content/uploads/2017/10/arroz-simples.jpg" class="img-responsive" />
+    <%= image_tag product.image.url, size: "400x250", class: 'img-responsive'  %>
     <h4 class="product-title"><%= product.name %></h4>
     <button type="button" class="btn btn-success fa fa-plus js-add-button"
                           data-product-id="<%= product.id %>"
