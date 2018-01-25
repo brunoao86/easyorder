@@ -11,6 +11,9 @@
 /db/*.sqlite3
 /db/*.sqlite3-journal
 
+# Ignore local test images
+public/system/products/images/000/*
+
 # Ignore all logfiles and tempfiles.
 /log/*
 /tmp/*
