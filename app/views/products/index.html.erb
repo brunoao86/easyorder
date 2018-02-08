@@ -7,6 +7,30 @@
 <div>
   <div class="panel panel-default">
     <div class="panel-heading">Products</div>
+
+    <div class="panel-heading">
+      <div class="row">
+        <div class="col-lg-12">
+          <textarea id='order' class='form-control'></textarea>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-6">
+          <button class='btn btn-primary btn-block generate-order' data-toggle="tooltip"
+            data-trigger="manual" data-placement="top" title="Copiado!">
+            Gerar pedido
+          </button>
+        </div>
+
+        <div class="col-lg-6">
+          <button class='btn btn-primary btn-block' onClick='order={};$("#order").val("")'>
+            Limpar carrinho
+          </button>
+        </div>
+      </div>
+    </div>
+
     <div class="panel-body">
       <p id="notice"><%= notice %></p>
 
@@ -42,7 +66,18 @@ $('.js-add-button').click(function(){
     item['qtd'] += 1;
   }
 
-  $('#order').val(JSON.stringify(order));
+  friendly_output = [];
+
+  product_ids = Object.keys(order)
+  var current_product;
+
+  for (i=0 ; i < product_ids.length ; i++) {
+    current_id      = product_ids[i];
+    current_product = order[current_id];
+    friendly_output.push(current_product.name + " (" + current_product.qtd + ")");
+  };
+
+  $('#order').val(friendly_output.join(', '));
 })
 
 </script>
