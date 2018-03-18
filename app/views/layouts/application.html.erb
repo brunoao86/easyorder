@@ -61,7 +61,7 @@
                     <a href="<%= store_products_path(@store) if @store.present? && @store.id.present? %>">Produtos</a>
                   </li>
                   <li>
-                    <a href="<%= store_products_path(@store) if @store.present? && @store.id.present? %>" class="active">Criar Produto</a>
+                    <a href="<%= new_store_product_path(@store) if @store.present? && @store.id.present? %>" class="active">Criar Produto</a>
                   </li>
                 </ul>
               </li>
