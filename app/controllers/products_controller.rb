@@ -1,6 +1,7 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
   before_action :set_store
+  layout :resolve_layout
 
   # GET /products
   # GET /products.json
@@ -59,6 +60,15 @@ class ProductsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to products_url, notice: 'Product was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  def resolve_layout
+    case action_name
+    when "index", "show"
+      "user_application"
+    else
+      "application"
     end
   end
 
