@@ -42,7 +42,7 @@
 
   <div class="form-group">
     <%= form.label :category_id %>
-    <%= form.text_field :category_id, id: :product_category_id, class: 'form-control' %>
+    <%= form.collection_select(:category_id, Category.all, :id, :name, include_blank: 'Selecione uma Categoria') %>
   </div>
 
   <div class="actions">
