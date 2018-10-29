@@ -37,7 +37,7 @@
 
   <div class="form-group">
     <%= form.label :store_id %>
-    <%= form.text_field :store_id, id: :product_store_id, class: 'form-control' %>
+    <%= form.collection_select(:store_id, Store.all, :id, :name, include_blank: 'Selecione uma Loja...') %>
   </div>
 
   <div class="form-group">
